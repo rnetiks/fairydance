@@ -14,7 +14,7 @@ namespace ConsoleApp1
     /// <summary>
     /// Fighting game using all Keys by quickly pressing them in the correct order
     /// </summary>
-    class Program
+    partial class Program
     {
         private enum Difficulty
         {
@@ -56,17 +56,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        class PlayerData
-        {
-            public string Name;
-            public int Level;
-            public int Strength;
-            public int Intelligence;
-            public int Agility;
-            public byte Statpoints;
-            public float Money = 341.32f;
 
-        }
         private static void PlayGame()
         {
             var t = new PlayerData();
