@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace ConsoleApp1
     /// </summary>
     partial class Program
     {
+        private static CultureInfo Culture = CultureInfo.CreateSpecificCulture("en-US");
         private enum Difficulty
         {
             Easy = 1,
@@ -52,22 +54,48 @@ namespace ConsoleApp1
                         break;
                     case "play":
                         PlayGame();
+                        ShowSingleplayer();
                         break;
                 }
             }
         }
 
+        private static void ShowTopbar() => Console.WriteLine($"{player.Money.ToString("C", Culture)}\t{player.Name}");
+        private static void ShowSingleplayer() {
+            ShowTopbar();
+            while (true) {
+                string cmd = Console.ReadLine();
+                switch (cmd) {
+                    //Travel a random distance 833m-1244m * Agility, each 1000m chance for random encounter, the further from start point 0,0 the stronger 
+                    case "travel":
+                        break;
+                    default:
+                        Console.WriteLine("Unknown Command");
+                        break;
+                }
+            }
+        }
+
+        static PlayerData player = new PlayerData();
+        
         private static void PlayGame()
         {
-            var t = new PlayerData();
-            Console.WriteLine(t.Money.ToString("c"));
             Console.Write(">> Character Name: ");
-            Console.ReadLine();
+            var name = Console.ReadLine();
+            if (name != null && (name.Length < 3 || name.Length > 32)) {
+                Console.WriteLine("Name must not be under 3 Digits or over 32");
+                PlayGame();
+                return;
+            }
+
+            player.Name = name;
             Console.WriteLine("Stats:");
             Console.WriteLine("STR: 10 (Physical Damage)");
             Console.WriteLine("INT: 10 (Magical Damage)");
             Console.WriteLine("AGI: 10 (Evasion Chance & Stamina)");
             Console.WriteLine("(Stats may change in the Future)");
+            Console.WriteLine("(Press any Key to continue)");
+            Console.ReadKey(true);
         }
         private static void HelpMenu()
         {
