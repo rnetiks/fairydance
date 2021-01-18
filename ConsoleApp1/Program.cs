@@ -27,9 +27,34 @@ namespace ConsoleApp1
             Impossible = 16
         }
         private static Difficulty difficulty;
-        private static void Main(string[] args)
-        {
-            MainMenu();
+        private static void Main(string[] args) {
+            Console.Title = "Fairy Dance";
+            /*
+             * P = Player
+             * C = City
+             * E = Event
+             * S = Shop
+             * ? = Unidentified
+             * Coloring no Character = Biome
+             */
+            Console.CursorVisible = false;
+            for (int xIndex = 0; xIndex < 31; xIndex++) {
+                for (int yIndex = 0; yIndex < 31; yIndex++) {
+                    Console.Write("? ");
+                }
+                Console.Write('\n');
+            }
+
+            Console.CursorLeft = 30;
+            Console.CursorTop = 15;
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Write('P');
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadKey();
+            //Tile.GetSurroundingTiles(1, 1, 0, 0);
+            //MainMenu();
         }
         /// <summary>
         /// Show the Main Menu of the Game, containing the main Windows
